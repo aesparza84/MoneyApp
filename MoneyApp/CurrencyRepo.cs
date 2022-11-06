@@ -34,6 +34,10 @@ namespace MoneyApp
 
         //}
 
+        private double CreateChange(double Amount)
+        {
+            return Amount;
+        }
         private double CreateChange(double AmountTendered, double TotalCost)
         {
             return AmountTendered - TotalCost;
@@ -41,14 +45,23 @@ namespace MoneyApp
 
         public double MakeChange(double AmountTendered, double TotalCost)
         {
-            double n = CreateChange(AmountTendered, TotalCost);
-            if (n < 0)
+            int D, h, q, d, n, p;
+            double remainingChange;
+
+            double x = CreateChange(AmountTendered, TotalCost);
+            if (x < 0)
             {
                 return 0;
             }
             else
-            { 
-                
+            {
+                foreach (ICurrency item in Coins)
+                {
+                    if (item.MonetaryValue == 1.00)
+                    {
+
+                    }
+                }
             }
         }
 
