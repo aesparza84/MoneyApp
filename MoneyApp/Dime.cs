@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoneyApp
 {
-    internal class Dime:Coin
+    internal class Dime:USCoin
     {
         public Dime()
         {

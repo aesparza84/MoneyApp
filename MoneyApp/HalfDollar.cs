@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoneyApp
 {
-    public class HalfDollar:Coin
+    public class HalfDollar:USCoin
     {
         public HalfDollar()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoneyApp
 {
-    public class Nickel:Coin
+    public class Nickel:USCoin
     {
         public Nickel()
         {
