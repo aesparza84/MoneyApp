@@ -34,11 +34,21 @@ namespace MoneyApp
 
         //}
 
-        public ICurrency MakeChange(double AmountTendered, double TotalCost)
+        private double CreateChange(double AmountTendered, double TotalCost)
         {
-            if (AmountTendered-TotalCost < 0)
+            return AmountTendered - TotalCost;
+        }
+
+        public double MakeChange(double AmountTendered, double TotalCost)
+        {
+            double n = CreateChange(AmountTendered, TotalCost);
+            if (n < 0)
             {
-                return (ICurrency);
+                return 0;
+            }
+            else
+            { 
+                
             }
         }
 
