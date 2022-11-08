@@ -17,7 +17,7 @@ namespace MoneyApp
         void RemoveCoin(Coin c); //removes coins from list
         double TotalValue();
 
-        ICurrency MakeChange(double Amount);
-        ICurrency MakeChange(double AmountTendered, double TotalCost);
+        double MakeChange(double Amount);
+        double MakeChange(double AmountTendered, double TotalCost);
     }
 }

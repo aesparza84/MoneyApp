@@ -13,9 +13,10 @@ namespace MoneyApp
             this.MonetaryValue = 0.50;
             this.Name = "Half Dollar";
             this.Year = 2005;
+            this.mintMark = MintMark.S;
         }
 
-        string About()
+        public override string About()
         {
             return $"This is a {this.Name} from {this.Year} and is with ${this.MonetaryValue.ToString()} .";
         }

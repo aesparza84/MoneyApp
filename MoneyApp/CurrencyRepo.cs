@@ -45,7 +45,7 @@ namespace MoneyApp
 
         public double MakeChange(double AmountTendered, double TotalCost)
         {
-            int D, h, q, d, n, p;
+            int dc, h, q, d, n, p;
             double remainingChange;
 
             double x = CreateChange(AmountTendered, TotalCost);
@@ -59,10 +59,11 @@ namespace MoneyApp
                 {
                     if (item.MonetaryValue == 1.00)
                     {
-
+                        return item.MonetaryValue;
                     }
                 }
             }
+            return 0;
         }
 
         public void RemoveCoin(Coin c)
@@ -79,6 +80,11 @@ namespace MoneyApp
                 n = prevN + item.MonetaryValue;
             }
             return n;
+        }
+
+        public double MakeChange(double Amount)
+        {
+            throw new NotImplementedException();
         }
     }
 }
