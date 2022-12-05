@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoneyApp
 {
-    internal class Quarter:USCoin
+    public class Quarter:USCoin
     {
         public Quarter()
         {
