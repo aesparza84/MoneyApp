@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace MoneyApp
 {
-    public enum PrivyMark{AB,K,JJE, MF}
+    
     public enum DesignMark{NA,OH,GJL,IAR,IT,JV}
     public class NorwegianCoin:Coin
     {
         //https://markyourcoin.weebly.com/norway-norge-noreg.html
-        public PrivyMark privyMark { get; set; }
         public DesignMark designMark { get; set; }
-
         public NorwegianCoin()
         {
 
@@ -22,27 +20,7 @@ namespace MoneyApp
         {
             return $"This is a {this.Name} from {this.Year} and is with ${this.MonetaryValue.ToString()} .";
         }
-
-        public virtual string GetPrivyFromMark()
-        {
-            string n = "";
-            switch (privyMark)
-            {
-                case PrivyMark.AB:
-                    n = "Bakken";
-                    break;
-                case PrivyMark.K:
-                    n = "Kolberg";
-                    break;
-                case PrivyMark.JJE:
-                    n = "Johansen";
-                    break;
-                case PrivyMark.MF:
-                    n = "Flagan";
-                    break;
-            }
-            return n;
-        }
+        
         public virtual string GetDesignFromMark()
         {
             string n = "";
