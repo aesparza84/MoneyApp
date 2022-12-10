@@ -8,18 +8,18 @@ namespace MoneyApp
 {
     public class CurrencyRepo : ICurrencyRepo
     {
-        public List<Coin> Coins { get; set; }
+        public List<ICoin> Coins { get; set; }
 
         public CurrencyRepo()
         {
-            Coins = new List<Coin>();
+            Coins = new List<ICoin>();
         }
         public string About()
         {
             return "";
         }
 
-        public void AddCoin(Coin c)
+        public void AddCoin(ICoin c)
         {
             Coins.Add(c);
         }
@@ -28,11 +28,18 @@ namespace MoneyApp
         {
             return Coins.Count;
         }
+        public static List<ICoin> SortList()
+        {
+            ICoin penny = new Penny();
+            ICoin nickel = new Nickel();
+            ICoin dime = new Dime();
+            ICoin quarter = new Quarter();
+            ICoin dollar = new DollarCoin();
 
-        //public ICurrencyRepo MakeChange(double Amount)
-        //{
+            List<ICoin> wallet = new List<ICoin> { penny, nickel, dime, quarter, dollar };
 
-        //}
+            return wallet.OrderByDescending(m => m.MonetaryValue).ToList();
+        }
 
         private double CreateChange(double Amount)
         {
@@ -41,7 +48,7 @@ namespace MoneyApp
         private double CreateChange(double AmountTendered, double TotalCost)
         {
             return AmountTendered - TotalCost;
-        }
+        }       
 
         public double MakeChange(double AmountTendered, double TotalCost)
         {
@@ -66,7 +73,7 @@ namespace MoneyApp
             return 0;
         }
 
-        public void RemoveCoin(Coin c)
+        public void RemoveCoin(ICoin c)
         {
             Coins.Remove(c);
         }
@@ -74,7 +81,7 @@ namespace MoneyApp
         public double TotalValue()
         {
             double n=0, prevN=0;
-            foreach (Coin item in Coins)
+            foreach (ICoin item in Coins)
             {
                 prevN = n;
                 n = prevN + item.MonetaryValue;

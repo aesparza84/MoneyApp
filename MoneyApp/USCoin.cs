@@ -6,13 +6,29 @@ using System.Threading.Tasks;
 
 namespace MoneyApp
 {
-    public class USCoin:Coin
+    
+    public abstract class USCoin:Coin
     {
         public MintMark mintMark { get; set; }
 
         public USCoin()
         { 
-            
+            this.Year= 0;
+            this.mintMark = MintMark.P;
+            this.MonetaryValue = 0;
+        }
+
+        public static List<ICoin> SortList()
+        {
+            ICoin penny = new Penny();
+            ICoin nickel= new Nickel();
+            ICoin dime = new Dime();    
+            ICoin quarter = new Quarter();
+            ICoin dollar = new DollarCoin();
+
+            List<ICoin> wallet = new List<ICoin> { penny, nickel, dime, quarter, dollar };
+
+            return wallet.OrderByDescending(m => m.MonetaryValue).ToList();
         }
         public virtual string About()
         {

@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoneyApp
 {
-    public interface ICoin:ICurrency
+    public class USRepo
     {
-        int Year { get; set; }
-
-        string About();
     }
 }
