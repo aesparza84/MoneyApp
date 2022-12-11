@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace MoneyApp
 {
-    public class USRepo:CurrencyRepo
+    public class NWRepo:CurrencyRepo
     {
         public static List<ICoin> ReferenceListByAmount()
         {
-            ICoin penny = new Penny();
-            ICoin nickel = new Nickel();
-            ICoin dime = new Dime();
-            ICoin quarter = new Quarter();
-            ICoin dollar = new DollarCoin();
+            ICoin one = new OneKrone();
+            ICoin five = new FiveKrone();
+            ICoin ten = new TenKrone();
+            ICoin twenty = new TwentyKrone();
 
-            List<ICoin> reference = new List<ICoin> { penny, nickel, dime, quarter, dollar };
+            List<ICoin> reference = new List<ICoin> { one,five,ten,twenty };
 
             return reference.OrderByDescending(m => m.MonetaryValue).ToList();
         }

@@ -8,27 +8,31 @@ namespace MoneyApp
 {
     public class CurrencyRepo : ICurrencyRepo
     {
-        public List<ICoin> Coins { get; set; }
+        public List<ICurrency> Coins { get; set; }
 
         public CurrencyRepo()
         {
-            Coins = new List<ICoin>();
+            Coins = new List<ICurrency>();
         }
         public string About()
         {
             return "";
         }
 
-        public void AddCoin(ICoin c)
+        public void AddCoin(ICurrency c)
         {
             Coins.Add(c);
+        }
+        public void RemoveCoin(ICurrency c)
+        {
+            Coins.Remove(c);
         }
 
         public int GetCoinCount()
         {
             return Coins.Count;
         }
-        public static List<ICoin> SortList()
+        public static List<ICoin> ReferenceListByAmount()
         {
             ICoin penny = new Penny();
             ICoin nickel = new Nickel();
@@ -36,47 +40,40 @@ namespace MoneyApp
             ICoin quarter = new Quarter();
             ICoin dollar = new DollarCoin();
 
-            List<ICoin> wallet = new List<ICoin> { penny, nickel, dime, quarter, dollar };
+            List<ICoin> reference = new List<ICoin> { penny, nickel, dime, quarter, dollar };
 
-            return wallet.OrderByDescending(m => m.MonetaryValue).ToList();
+            return reference.OrderByDescending(m => m.MonetaryValue).ToList();
         }
 
-        private double CreateChange(double Amount)
+        protected double CreateChange(double Amount)
         {
             return Amount;
         }
-        private double CreateChange(double AmountTendered, double TotalCost)
+        protected double CreateChange(double AmountTendered, double TotalCost)
         {
             return AmountTendered - TotalCost;
         }       
 
-        public double MakeChange(double AmountTendered, double TotalCost)
+        public virtual ICurrencyRepo MakeChange(double AmountTendered, double TotalCost)
         {
-            int dc, h, q, d, n, p;
-            double remainingChange;
+            double realChange = CreateChange(AmountTendered, TotalCost);
 
-            double x = CreateChange(AmountTendered, TotalCost);
-            if (x < 0)
+            CurrencyRepo change = new CurrencyRepo();
+
+            List<ICoin> referenceList = ReferenceListByAmount();
+
+            foreach (ICoin item in referenceList)
             {
-                return 0;
-            }
-            else
-            {
-                foreach (ICurrency item in Coins)
+                while (realChange >= item.MonetaryValue)
                 {
-                    if (item.MonetaryValue == 1.00)
-                    {
-                        return item.MonetaryValue;
-                    }
+                    change.AddCoin(item);
+                    realChange -= item.MonetaryValue;
                 }
             }
-            return 0;
+            return change;
         }
 
-        public void RemoveCoin(ICoin c)
-        {
-            Coins.Remove(c);
-        }
+        
 
         public double TotalValue()
         {
@@ -89,7 +86,7 @@ namespace MoneyApp
             return n;
         }
 
-        public double MakeChange(double Amount)
+        public ICurrencyRepo MakeChange(double Amount)
         {
             throw new NotImplementedException();
         }

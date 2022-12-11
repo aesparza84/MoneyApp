@@ -17,7 +17,7 @@ namespace MoneyApp
         
         }
 
-        string About()
+        public string About()
         {
             return $"A {this.Year.ToString()} {Name} worth ${this.MonetaryValue.ToString()}";
         }

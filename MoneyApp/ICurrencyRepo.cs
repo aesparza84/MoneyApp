@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace MoneyApp
 {
-    internal interface ICurrencyRepo
+    public interface ICurrencyRepo
     {
-        List<ICoin> Coins { get; set; }
+        List<ICurrency> Coins { get; set; }
 
         int GetCoinCount();
         string About();
 
-        void AddCoin(ICoin c); //adds Coins to list
-        void RemoveCoin(ICoin c); //removes coins from list
+        void AddCoin(ICurrency c); //adds Coins to list
+        void RemoveCoin(ICurrency c); //removes coins from list
         double TotalValue();
 
-        double MakeChange(double Amount);
-        double MakeChange(double AmountTendered, double TotalCost);
+        ICurrencyRepo MakeChange(double Amount);
+        ICurrencyRepo MakeChange(double AmountTendered, double TotalCost);
     }
 }

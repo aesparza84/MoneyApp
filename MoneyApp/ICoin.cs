@@ -10,6 +10,6 @@ namespace MoneyApp
     {
         int Year { get; set; }
 
-        string About();
+        string About() { return ""; }
     }
 }
