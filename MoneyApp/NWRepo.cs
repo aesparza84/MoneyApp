@@ -19,6 +19,7 @@ namespace MoneyApp
 
             return reference.OrderByDescending(m => m.MonetaryValue).ToList();
         }
+
         public override CurrencyRepo MakeChange(double AmountTendered, double TotalCost)
         {
             double realChange = CreateChange(AmountTendered, TotalCost);

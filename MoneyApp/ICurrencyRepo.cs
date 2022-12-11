@@ -15,7 +15,7 @@ namespace MoneyApp
 
         void AddCoin(ICurrency c); //adds Coins to list
         void RemoveCoin(ICurrency c); //removes coins from list
-        double TotalValue();
+        string TotalValue();
 
         CurrencyRepo MakeChange(double Amount);
         CurrencyRepo MakeChange(double AmountTendered, double TotalCost);

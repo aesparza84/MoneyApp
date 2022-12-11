@@ -9,7 +9,7 @@ namespace MoneyApp
     public class CurrencyRepo : ICurrencyRepo
     {
         public List<ICurrency> Coins { get; set; }
-
+        ICurrencyRepo change { get; set; }
         public CurrencyRepo()
         {
             Coins = new List<ICurrency>();
@@ -52,13 +52,18 @@ namespace MoneyApp
         protected double CreateChange(double AmountTendered, double TotalCost)
         {
             return AmountTendered - TotalCost;
-        }       
+        }
+
+        //public CurrencyRepo GetRepoType()
+        //{            
+        //    return this.GetType();
+        //}
 
         public virtual CurrencyRepo MakeChange(double AmountTendered, double TotalCost)
         {
             double realChange = CreateChange(AmountTendered, TotalCost);
 
-            CurrencyRepo change = new CurrencyRepo();
+            CurrencyRepo change = new CurrencyRepo();            
 
             List<ICoin> referenceList = ReferenceListByAmount();
 
@@ -75,7 +80,7 @@ namespace MoneyApp
 
         
 
-        public double TotalValue()
+        public string TotalValue()
         {
             double n=0, prevN=0;
             foreach (ICoin item in Coins)
@@ -83,12 +88,12 @@ namespace MoneyApp
                 prevN = n;
                 n = prevN + item.MonetaryValue;
             }
-            return n;
+            return string.Format("{0:N2}", n);
         }
 
-        public CurrencyRepo MakeChange(double Amount)
+        public CurrencyRepo MakeChange( double Amount)
         {
-            throw new NotImplementedException();
+            return MakeChange(Amount, 0);   
         }
     }
 }
