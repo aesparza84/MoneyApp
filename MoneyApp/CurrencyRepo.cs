@@ -54,7 +54,7 @@ namespace MoneyApp
             return AmountTendered - TotalCost;
         }       
 
-        public virtual ICurrencyRepo MakeChange(double AmountTendered, double TotalCost)
+        public virtual CurrencyRepo MakeChange(double AmountTendered, double TotalCost)
         {
             double realChange = CreateChange(AmountTendered, TotalCost);
 
@@ -86,7 +86,7 @@ namespace MoneyApp
             return n;
         }
 
-        public ICurrencyRepo MakeChange(double Amount)
+        public CurrencyRepo MakeChange(double Amount)
         {
             throw new NotImplementedException();
         }
