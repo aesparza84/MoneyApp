@@ -25,7 +25,7 @@ namespace MoneyApp
             double realChange = CreateChange(AmountTendered, TotalCost);
 
             CurrencyRepo change = new CurrencyRepo();
-
+            
             List<ICoin> referenceList = ReferenceListByAmount();
 
             foreach (ICoin item in referenceList)
